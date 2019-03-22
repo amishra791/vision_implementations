@@ -29,10 +29,6 @@ parser.add_argument('--shuffle', type=bool, help='whether to shuffle the data af
 
 
 
-
-
-
-
 def main():
 
     train_dataset = ModifiedCityscapes('/home/amishra/datasets/cityscapes', split='train', mode='fine', target_type='color')
@@ -40,9 +36,15 @@ def main():
 
     train_dataloader = DataLoader(train_dataset, batch_size=4, shuffle=True, collate_fn=ModifiedCityscapes.collate_fn, num_workers=2)
     
-    for i, data in enumerate(train_dataloader):
-        images, labels = data
-        print((images.size(), labels.size()))
+    num_epochs = 1
+
+    for k in range(num_epochs):
+
+        
+        for i, data in enumerate(train_dataloader):
+
+            images, labels = data
+            print((images.size(), labels.size()))
 
 
 if __name__ == '__main__':
